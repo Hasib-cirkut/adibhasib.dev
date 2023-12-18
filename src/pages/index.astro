@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {Debug} from "astro:components"
+import {useStoryblokApi} from "@storyblok/astro"
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+
+const storyblokApi = useStoryblokApi()
+
+const { data } = await storyblokApi.get("cdn/links/")
+
+const links = Object.entries(data.links).map(entry => entry[1])
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+    <ul>
+      {links.map(link => {
+        return <a class="block" href={`/${link.slug}`}>{link.name}</a>
+      })}
+    </ul>
+    <!-- <Debug data={links} /> -->
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+</style>
