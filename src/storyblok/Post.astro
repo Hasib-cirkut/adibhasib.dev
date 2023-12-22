@@ -1,21 +1,20 @@
 ---
-import { storyblokEditable, renderRichText } from '@storyblok/astro'
-import {Debug} from 'astro:components'
-import { marked } from "marked"
-import { micromark } from "micromark"
+import { storyblokEditable, renderRichText } from "@storyblok/astro";
+import { Debug } from "astro:components";
+import { marked } from "marked";
+import { micromark } from "micromark";
 
-const { blok } = Astro.props
-const content = micromark(blok.body)
+const { blok } = Astro.props;
+const content = micromark(blok.body);
 
-console.log(blok.slug)
+console.log(blok.slug);
 ---
 
-<article class="m-auto prose prose-headings:text-gray-200 prose-p:text-gray-100 prose-headings:font-headings 
-  prose-p:font-body prose-inline-code:bg-sky-500/70 prose-inline-code:text-gray-900 prose-inline-code:rounded
-  prose-inline-code:before:content-[''] prose-inline-code:after:content-[''] prose-inline-code:px-1
-  marker:text-sky-500 prose-li:text-white" {...storyblokEditable(blok)}>
-  <h1 >{blok.title}</h1>
+<article
+  class="m-auto prose prose-headings:text-gray-200 prose-p:text-gray-100 prose-headings:font-headings prose-p:font-body prose-inline-code:bg-sky-500/70 prose-inline-code:text-gray-900 prose-inline-code:rounded prose-inline-code:before:content-[''] prose-inline-code:after:content-[''] prose-inline-code:px-1 marker:text-sky-500 prose-li:text-white"
+  {...storyblokEditable(blok)}
+>
+  <h1>{blok.title}</h1>
   <p>{blok.description}</p>
   <Fragment set:html={content} />
 </article>
-

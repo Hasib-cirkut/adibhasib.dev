@@ -1,35 +1,48 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import {Debug} from "astro:components"
-import {useStoryblokApi} from "@storyblok/astro"
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import Layout from "../layouts/Layout.astro";
+import { Debug } from "astro:components";
+import { useStoryblokApi } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
 
-const storyblokApi = useStoryblokApi()
+const storyblokApi = useStoryblokApi();
 
-const { data } = await storyblokApi.get("cdn/links/")
+const { data } = await storyblokApi.get("cdn/links/");
 
-const links = Object.entries(data.links).map(entry => entry[1])
+const links = Object.entries(data.links).map((entry) => entry[1]);
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-    <ul>
-      {links.map(link => {
-        return <a class="block" href={`/${link.slug}`}>{link.name}</a>
-      })}
-    </ul>
-    <!-- <Debug data={links} /> -->
-	</main>
+  <div class="flex flex-col gap-16">
+    <Nav />
+    <Hero />
+    <main class="mt-8">
+      <!-- <ul> -->
+      <!--   { -->
+      <!--     links.map((link: any) => { -->
+      <!--       return ( -->
+      <!--         <a class="block" href={`/${link.slug}`}> -->
+      <!--           {link.name} -->
+      <!--         </a> -->
+      <!--       ); -->
+      <!--     }) -->
+      <!--   } -->
+      <!-- </ul> -->
+
+      <!-- <Debug data={links} /> -->
+    </main>
+  </div>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
 </style>

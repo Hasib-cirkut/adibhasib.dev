@@ -1,0 +1,26 @@
+---
+import CopyIcon from "./icons/copy.astro";
+import SocialsVue from "./Socials.vue";
+---
+
+<nav class="grid grid-cols-12 w-full uppercase text-white text-md px-16 py-8">
+  <h1 class="flex items-center col-start-1 col-end-3 text-xl">Adib Hasib</h1>
+
+  <ul class="flex items-center gap-4">
+    <a
+      href="#"
+      class="transition ease-in-out border-b border-b-transparent hover:border-b-white"
+      >About</a
+    >
+    <a
+      href="#"
+      class="transition ease-in-out border-b border-b-transparent hover:border-b-white"
+      >Work</a
+    >
+  </ul>
+
+  <ul class="flex items-center gap-2 col-start-9 col-end-13">
+    <li class="uppercase">Let's Connect</li>
+    <SocialsVue client:load />
+  </ul>
+</nav>

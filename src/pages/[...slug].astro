@@ -1,51 +1,51 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { useStoryblokApi } from '@storyblok/astro'
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import Layout from "../layouts/Layout.astro";
+import { useStoryblokApi } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
-export async function getStaticPaths(){
-  const sbApi = useStoryblokApi()
+export async function getStaticPaths() {
+  const sbApi = useStoryblokApi();
 
-  const {data} = await sbApi.get('cdn/stories', {
-    version: "published"
-  })
+  const { data } = await sbApi.get("cdn/stories", {
+    version: "published",
+  });
 
-  const stories = Object.values(data.stories)
+  const stories = Object.values(data.stories);
 
-  console.log(data.stories)
+  console.log(data.stories);
 
   return stories.map((story: any) => {
     return {
       params: {
-        slug: story.slug
-      }
-    }
-  })
+        slug: story.slug,
+      },
+    };
+  });
 }
 
-const sbApi = useStoryblokApi()
-const {slug} = Astro.params
+const sbApi = useStoryblokApi();
+const { slug } = Astro.params;
 const { data } = await sbApi.get(`cdn/stories/${slug}`, {
-  version: "published"
-})
+  version: "published",
+});
 
-const story = data.story
+const story = data.story;
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
+  <main>
     <StoryblokComponent blok={story.content} />
-	</main>
+  </main>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
 </style>
