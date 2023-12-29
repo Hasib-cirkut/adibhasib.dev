@@ -5,6 +5,7 @@ import { useStoryblokApi } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
+import RecentlyPublished from "../components/RecentlyPublished.astro";
 
 const storyblokApi = useStoryblokApi();
 
@@ -17,21 +18,7 @@ const links = Object.entries(data.links).map((entry) => entry[1]);
   <div class="flex flex-col gap-16">
     <Nav />
     <Hero />
-    <main class="mt-8">
-      <!-- <ul> -->
-      <!--   { -->
-      <!--     links.map((link: any) => { -->
-      <!--       return ( -->
-      <!--         <a class="block" href={`/${link.slug}`}> -->
-      <!--           {link.name} -->
-      <!--         </a> -->
-      <!--       ); -->
-      <!--     }) -->
-      <!--   } -->
-      <!-- </ul> -->
-
-      <!-- <Debug data={links} /> -->
-    </main>
+    <RecentlyPublished links={links} />
   </div>
 </Layout>
 

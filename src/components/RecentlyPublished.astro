@@ -1,0 +1,20 @@
+---
+const { links } = Astro.props;
+---
+
+<section>
+  <h1 class="mb-4">Recently Published</h1>
+  <ul class="flex gap-4">
+    {
+      links.map((link: any) => {
+        return (
+          <li class="w-2/6 bg-gray-800 p-4 rounded">
+            <a class="block text-white text-wrap" href={`/${link.slug}`}>
+              {link.name}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>
