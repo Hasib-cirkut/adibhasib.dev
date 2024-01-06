@@ -1,12 +1,18 @@
 ---
-import CopyIcon from "./icons/copy.astro";
-import SocialsVue from "./Socials.vue";
+import LinkedInLogo from "./icons/linkedin.astro";
+import GithubLogo from "./icons/github.astro";
 ---
 
-<nav class="grid grid-cols-12 w-full uppercase text-white text-md py-8">
-  <h1 class="flex items-center col-start-1 col-end-3 text-xl">Adib Hasib</h1>
+<nav
+  class="flex items-center justify-between sm:grid grid-cols-12 w-full uppercase text-white text-md py-8"
+>
+  <a
+    href="/"
+    class="flex items-center sm:col-start-1 sm:col-end-4 text-xl"
+    >Adib Hasib</a
+  >
 
-  <ul class="flex items-center gap-4">
+  <ul class="flex items-center gap-4 sm:col-start-4 sm:col-end-8">
     <a
       href="#"
       class="transition ease-in-out border-b border-b-transparent hover:border-b-white"
@@ -19,8 +25,17 @@ import SocialsVue from "./Socials.vue";
     >
   </ul>
 
-  <ul class="flex items-center gap-2 col-start-9 col-end-13">
+  <ul
+    class="hidden sm:flex items-center justify-end gap-2 col-start-9 col-end-13"
+  >
     <li class="uppercase">Let's Connect</li>
-    <SocialsVue client:load />
+    <div class="flex gap-4">
+      <a href="https://www.linkedin.com/in/hasibul-huda/" target="_blank"
+        ><LinkedInLogo /></a
+      >
+      <a href="https://github.com/Hasib-cirkut" target="_blank"
+        ><GithubLogo /></a
+      >
+    </div>
   </ul>
 </nav>

@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import { Debug } from "astro:components";
 import { useStoryblokApi } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
-import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
 import RecentlyPublished from "../components/RecentlyPublished.astro";
 
@@ -16,7 +15,6 @@ const links = Object.entries(data.links).map((entry) => entry[1]);
 
 <Layout title="Welcome to Astro.">
   <div class="flex flex-col gap-16">
-    <Nav />
     <Hero />
     <RecentlyPublished links={links} />
   </div>
