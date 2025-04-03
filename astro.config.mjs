@@ -19,5 +19,5 @@ export default defineConfig({
     apiOptions: {
       region: "us"
     }
-  }), tailwind(), vue()]
+  }), tailwind(), vue()],
 });

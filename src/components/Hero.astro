@@ -1,13 +1,23 @@
 ---
 import { Image } from "astro:assets";
 import selfImage from "../images/self-2.jpg";
+import Dots from './icons/dots.astro'
 ---
 
 <section class="text-white uppercase flex flex-col justify-center items-center">
-  <h1 class="text-6xl font-bold">Software Engineer</h1>
+  <div class="relative">
+    <Dots class="absolute z-[-1] dots-illustration" />
+    <h1 class="text-6xl font-bold">Software Engineer</h1>
+  </div>
   <div class="flex justify-between w-2/6 font-semibold">
     <p>Currently @WellDev.io</p>
     <p>(2022 - PRESENT)</p>
   </div>
   <Image src={selfImage} alt="Hasibul Huda" width="400" class="rounded-3xl mt-16" />
 </section>
+
+<style>
+  :global(.dots-illustration) {
+    transform: translate(-25%, -25%);
+  }
+</style>
