@@ -2,17 +2,16 @@
 export default {
   useTabs: true,
   singleQuote: true,
-  trailingComma: "none",
+  trailingComma: 'none',
   semi: false,
   printWidth: 100,
-  pluginSearchDirs: false,
-  plugins: ["prettier-plugin-astro"],
+  plugins: ['prettier-plugin-astro'],
   overrides: [
     {
-      files: "*.astro",
+      files: '*.astro',
       options: {
-        parser: "astro",
-      },
-    },
-  ],
-};
+        parser: 'astro'
+      }
+    }
+  ]
+}
