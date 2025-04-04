@@ -6,8 +6,6 @@ import { micromark } from "micromark";
 
 const { blok } = Astro.props;
 const content = micromark(blok.body);
-
-console.log(blok.slug);
 ---
 
 <article

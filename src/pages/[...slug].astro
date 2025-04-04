@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { useStoryblokApi } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+import PageScrollCompletionInfo from "../components/PageScrollCompletionInfo.vue";
 
 const sbApi = useStoryblokApi();
 const { slug } = Astro.params;
@@ -15,6 +16,7 @@ const story = data.story;
 <Layout title="Welcome to Astrobot.">
   <main>
     <StoryblokComponent blok={story.content} />
+    <PageScrollCompletionInfo client:load />
   </main>
 </Layout>
 
