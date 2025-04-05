@@ -1,18 +1,61 @@
 ---
-import { storyblokEditable, renderRichText } from "@storyblok/astro";
-import { Debug } from "astro:components";
-import { marked } from "marked";
-import { micromark } from "micromark";
+import { storyblokEditable } from "@storyblok/astro";
+import { Marked } from "marked";
+import { markedHighlight } from "marked-highlight";
+import { createHighlighter } from "shiki";
 
 const { blok } = Astro.props;
-const content = micromark(blok.body);
+
+// Configure marked with syntax highlighting
+const highlighter = await createHighlighter({
+  themes: ["one-dark-pro", "vitesse-dark"],
+  langs: ["javascript", "typescript"],
+});
+
+const marked = new Marked(
+  markedHighlight({
+    highlight(code, lang, info) {
+      return highlighter.codeToHtml(code, { lang, theme: "vitesse-dark" });
+    },
+  }),
+);
+
+const content = marked.parse(blok.body);
 ---
 
 <article
-  class="m-auto prose prose-headings:text-gray-200 prose-p:text-gray-100 prose-headings:font-headings prose-p:font-body prose-inline-code:bg-sky-500/70 prose-inline-code:text-gray-900 prose-inline-code:rounded prose-inline-code:before:content-[''] prose-inline-code:after:content-[''] prose-inline-code:px-1 marker:text-sky-500 prose-li:text-white"
+  class="m-auto prose prose-headings:text-gray-200 prose-p:text-gray-100 prose-headings:font-headings prose-p:font-body prose-inline-code:bg-sky-500/70 prose-inline-code:text-gray-900 prose-inline-code:rounded prose-inline-code:before:content-[''] prose-inline-code:after:content-[''] prose-inline-code:px-1 marker:text-sky-500 prose-li:text-white prose-pre:p-0 prose-pre:bg-transparent"
   {...storyblokEditable(blok)}
 >
   <h1>{blok.title}</h1>
   <p>{blok.description}</p>
   <Fragment set:html={content} />
 </article>
+
+<style is:global>
+  pre.shiki {
+    padding: 1rem;
+  }
+  /* Style other markdown elements */
+  blockquote {
+    border-left: 4px solid #2dd4bf;
+    padding-left: 1rem;
+    margin-left: 0;
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    border: 1px solid #374151;
+    padding: 0.5rem;
+  }
+
+  th {
+    background-color: #1f2937;
+  }
+</style>
